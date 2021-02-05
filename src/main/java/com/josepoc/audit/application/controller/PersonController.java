@@ -46,10 +46,12 @@ public class PersonController {
         path = "/{id}",
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Person> findPersonById(@PathVariable UUID id) {
-        Person person = personService.findById(id);
+    public ResponseEntity<PersonDto> findPersonById(@PathVariable UUID id) {
+        PersonDto personDto = personMapper.toDto(
+            personService.findById(id)
+        );
         return ResponseEntity.ok()
-                             .body(person);
+                             .body(personDto);
     }
 
     @PatchMapping(
@@ -57,9 +59,11 @@ public class PersonController {
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Person> updatePerson(@PathVariable UUID id, @RequestBody PersonDto personDto){
-        Person updatedPerson = personService.update(id, personMapper.toEntity(personDto));
-        return ResponseEntity.ok(updatedPerson);
+    public ResponseEntity<PersonDto> updatePerson(@PathVariable UUID id, @RequestBody PersonDto personDto){
+        PersonDto updatedPersonDto = personMapper.toDto(
+            personService.update(id, personMapper.toEntity(personDto))
+        );
+        return ResponseEntity.ok(updatedPersonDto);
     }
 
     @DeleteMapping(
