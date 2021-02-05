@@ -26,13 +26,11 @@ public class PersonService {
         Person person = findById(id);
         person.setName(personUpdate.getName());
         person.setLastName(personUpdate.getLastName());
-        personRepository.save(person);
-        return person;
+        return personRepository.save(person);
     }
 
-    public Person delete(UUID id){
+    public void delete(UUID id){
         Person person = findById(id);
         personRepository.delete(person);
-        return person;
     }
 }

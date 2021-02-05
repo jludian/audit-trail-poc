@@ -58,8 +58,7 @@ public class PersonController {
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Person> updatePerson(@PathVariable UUID id, @RequestBody PersonDto personDto){
-        Person person = personMapper.toEntity(personDto);
-        Person updatedPerson = personService.update(id, person);
+        Person updatedPerson = personService.update(id, personMapper.toEntity(personDto));
         return ResponseEntity.ok(updatedPerson);
     }
 
@@ -68,7 +67,7 @@ public class PersonController {
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Void> deletePerson(@PathVariable UUID id){
-        Person person = personService.delete(id);
+        personService.delete(id);
         return ResponseEntity.noContent()
                              .build();
     }

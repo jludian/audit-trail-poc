@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalControllerAdvisor {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException e,
+                                                                               HttpServletRequest request)
+    {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                              .body(errorResponse(e, request));
     }
