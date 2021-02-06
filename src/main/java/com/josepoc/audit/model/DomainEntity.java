@@ -2,7 +2,7 @@ package com.josepoc.audit.model;
 
 import java.util.UUID;
 
-public interface BaseEntity {
+public interface DomainEntity {
 
     UUID getId();
 }

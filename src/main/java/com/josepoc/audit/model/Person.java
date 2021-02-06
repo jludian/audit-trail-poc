@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "person")
-public class Person implements BaseEntity {
+public class Person implements DomainEntity {
 
     @Id
     private UUID id;
